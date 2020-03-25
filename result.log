@@ -1,0 +1,4659 @@
+************************************************************************************
+Verifying benchmark: test.c
+/usr/bin/clang-3.6 -c -emit-llvm -D__SEAHORN__ -fgnu89-inline -m32 -I./build/run/include -o /tmp/sea-Yn1_nn/test.bc test.c
+/home/ylzhang/rnn_inv/build/run/bin/seapp -o /tmp/sea-Yn1_nn/test.pp.bc --strip-extern=false --kill-vaarg=true -log none /tmp/sea-Yn1_nn/test.bc
+/home/ylzhang/rnn_inv/build/run/bin/seapp -o /tmp/sea-Yn1_nn/test.pp.ms.bc --horn-mixed-sem --ms-reduce-main /tmp/sea-Yn1_nn/test.pp.bc
+/home/ylzhang/rnn_inv/build/run/bin/seaopt -f -funit-at-a-time -o /tmp/sea-Yn1_nn/test.pp.ms.o.bc -O3 --enable-indvar=false --enable-loop-idiom=false --enable-nondet-init=false --unroll-threshold=150 --disable-loop-vectorization=true --disable-slp-vectorization=true --vectorize-slp-aggressive=false /tmp/sea-Yn1_nn/test.pp.ms.bc
+/home/ylzhang/rnn_inv/build/run/bin/seahorn --keep-shadows=true --horn-solve -horn-inter-proc -horn-sem-lvl=mem --horn-step=large -log none /tmp/sea-Yn1_nn/test.pp.ms.o.bc --horn-answer --horn-stats --horn-ice --horn-ice-svm-c-paramter=10 --horn-ice-c5-exec-path=C50/c5.0.dt_entropy --horn-ice-svm-exec-path=libsvm/svm-invgen --horn-ice-svm-coeff-bound=5 --horn-rule-sample-length=1 --horn-ice-svm-call-freq-pos=0 --horn-ice-svm-call-freq-neg=30
+verify horn rule : main@verifier.error.split <- ((main@.lr.ph main@%y.0.i2_0 main@%x.0.i1_0 main@%_1_0)&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+Verification condition: false <- (true&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (and true
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@verifier.error.loopexit_0
+         (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_0 main@%_4_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_0 main@%_3_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_1 main@%.lcssa6_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_1 main@%.lcssa_0))
+     (=> main@verifier.error_0
+         (and main@verifier.error_0 main@verifier.error.loopexit_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%_1_0 () Int
+  0)
+(define-fun main@%y.0.i2_0 () Int
+  (- 1))
+(define-fun main@%.lcssa_1 () Int
+  (- 1))
+(define-fun main@%.lcssa6_1 () Int
+  0)
+(define-fun main@%.lcssa_0 () Int
+  (- 1))
+(define-fun main@%.lcssa6_0 () Int
+  0)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  (- 1))
+(define-fun main@%y.0.i.lcssa_1 () Int
+  0)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  (- 1))
+(define-fun main@%y.0.i.lcssa_0 () Int
+  0)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  0)
+(define-fun main@%_3_0 () Int
+  (- 1))
+Verification condition: false <- (false&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (and false
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@verifier.error.loopexit_0
+         (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_0 main@%_4_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_0 main@%_3_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_1 main@%.lcssa6_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_1 main@%.lcssa_0))
+     (=> main@verifier.error_0
+         (and main@verifier.error_0 main@verifier.error.loopexit_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+verify horn rule : (main@.lr.ph main@%y.0.i2_2 main@%x.0.i1_2 main@%_1_0) <- ((main@.lr.ph main@%y.0.i2_0 main@%x.0.i1_0 main@%_1_0)&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+Verification condition: false <- (false&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%y.0.i2_2 () Int)
+
+(assert (not false))
+(assert (and false
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+     main@.lr.ph_1
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1))))
+(check-sat)
+
+verify horn rule : main@verifier.error.split <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+Verification condition: false <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%_2_0 () Bool)
+(declare-fun main@%_0_0 () Int)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+
+(assert (not false))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@verifier.error_0 (and main@verifier.error_0 main@entry_0))
+     (=> (and main@verifier.error_0 main@entry_0) (not main@%_2_0))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%y.0.i.lcssa_0 3))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%x.0.i.lcssa_0 4))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+verify horn rule : (main@.lr.ph main@%y.0.i2_1 main@%x.0.i1_1 main@%_1_0) <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+Verification condition: false <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+smt formulas 
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_0_0 () Int)
+(declare-fun main@%_2_0 () Bool)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@.lr.ph.preheader_0 () Bool)
+
+(assert (not false))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@.lr.ph.preheader_0 (and main@.lr.ph.preheader_0 main@entry_0))
+     (=> (and main@.lr.ph.preheader_0 main@entry_0) main@%_2_0)
+     (=> main@.lr.ph_0 (and main@.lr.ph_0 main@.lr.ph.preheader_0))
+     main@.lr.ph_0
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%y.0.i2_0 3))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%x.0.i1_0 4))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%y.0.i2_1 main@%y.0.i2_0))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%x.0.i1_1 main@%x.0.i1_0))))
+(check-sat)
+
+z3 model (define-fun main@%_1_0 () Int
+  4)
+(define-fun main@%x.0.i1_1 () Int
+  4)
+(define-fun main@%y.0.i2_1 () Int
+  3)
+(define-fun main@%x.0.i1_0 () Int
+  4)
+(define-fun main@%y.0.i2_0 () Int
+  3)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@.lr.ph.preheader_0 () Bool
+  true)
+(define-fun main@entry_0 () Bool
+  true)
+(define-fun main@%_2_0 () Bool
+  true)
+(define-fun @unknown_0 () Int
+  0)
+(define-fun main@%_0_0 () Int
+  0)
+Verification condition: true <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+smt formulas 
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_0_0 () Int)
+(declare-fun main@%_2_0 () Bool)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@.lr.ph.preheader_0 () Bool)
+
+(assert (not true))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@.lr.ph.preheader_0 (and main@.lr.ph.preheader_0 main@entry_0))
+     (=> (and main@.lr.ph.preheader_0 main@entry_0) main@%_2_0)
+     (=> main@.lr.ph_0 (and main@.lr.ph_0 main@.lr.ph.preheader_0))
+     main@.lr.ph_0
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%y.0.i2_0 3))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%x.0.i1_0 4))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%y.0.i2_1 main@%y.0.i2_0))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%x.0.i1_1 main@%x.0.i1_0))))
+(check-sat)
+
+verify horn rule : main@verifier.error.split <- ((main@.lr.ph main@%y.0.i2_0 main@%x.0.i1_0 main@%_1_0)&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+Verification condition: false <- (true&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (and true
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@verifier.error.loopexit_0
+         (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_0 main@%_4_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_0 main@%_3_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_1 main@%.lcssa6_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_1 main@%.lcssa_0))
+     (=> main@verifier.error_0
+         (and main@verifier.error_0 main@verifier.error.loopexit_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%_1_0 () Int
+  0)
+(define-fun main@%y.0.i2_0 () Int
+  (- 1))
+(define-fun main@%.lcssa_1 () Int
+  (- 1))
+(define-fun main@%.lcssa6_1 () Int
+  0)
+(define-fun main@%.lcssa_0 () Int
+  (- 1))
+(define-fun main@%.lcssa6_0 () Int
+  0)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  (- 1))
+(define-fun main@%y.0.i.lcssa_1 () Int
+  0)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  (- 1))
+(define-fun main@%y.0.i.lcssa_0 () Int
+  0)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  0)
+(define-fun main@%_3_0 () Int
+  (- 1))
+Verification condition: false <- ((true&&(!(main@%y.0.i2_0<=-1)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (and true
+     (not (<= main@%y.0.i2_0 (- 1)))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@verifier.error.loopexit_0
+         (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_0 main@%_4_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_0 main@%_3_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_1 main@%.lcssa6_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_1 main@%.lcssa_0))
+     (=> main@verifier.error_0
+         (and main@verifier.error_0 main@verifier.error.loopexit_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+z3 model (define-fun main@%y.0.i2_0 () Int
+  0)
+(define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%_1_0 () Int
+  1)
+(define-fun main@%.lcssa_1 () Int
+  0)
+(define-fun main@%.lcssa6_1 () Int
+  1)
+(define-fun main@%.lcssa_0 () Int
+  0)
+(define-fun main@%.lcssa6_0 () Int
+  1)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  0)
+(define-fun main@%y.0.i.lcssa_1 () Int
+  1)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  0)
+(define-fun main@%y.0.i.lcssa_0 () Int
+  1)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  1)
+(define-fun main@%_3_0 () Int
+  0)
+Verification condition: false <- ((true&&(!(main@%x.0.i1_0<=0)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (and true
+     (not (<= main@%x.0.i1_0 0))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@verifier.error.loopexit_0
+         (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_0 main@%_4_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_0 main@%_3_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_1 main@%.lcssa6_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_1 main@%.lcssa_0))
+     (=> main@verifier.error_0
+         (and main@verifier.error_0 main@verifier.error.loopexit_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+verify horn rule : (main@.lr.ph main@%y.0.i2_2 main@%x.0.i1_2 main@%_1_0) <- ((main@.lr.ph main@%y.0.i2_0 main@%x.0.i1_0 main@%_1_0)&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+Verification condition: (true&&(!(main@%x.0.i1_2<=0))) <- ((true&&(!(main@%x.0.i1_0<=0)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_2 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+
+(assert (not (and true (not (<= main@%x.0.i1_2 0)))))
+(assert (and true
+     (not (<= main@%x.0.i1_0 0))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+     main@.lr.ph_1
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1))))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  1)
+(define-fun main@%y.0.i2_0 () Int
+  (- 1))
+(define-fun main@%_1_0 () Int
+  1)
+(define-fun main@%x.0.i1_2 () Int
+  0)
+(define-fun main@%y.0.i2_2 () Int
+  0)
+(define-fun main@%x.0.i1_1 () Int
+  0)
+(define-fun main@%y.0.i2_1 () Int
+  0)
+(define-fun main@%_5_0 () Bool
+  true)
+(define-fun main@.lr.ph_1 () Bool
+  true)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@%_4_0 () Int
+  0)
+(define-fun main@%_3_0 () Int
+  0)
+Verification condition: (true&&(!(((1*main@%y.0.i2_2)+(1*main@%x.0.i1_2))<=0))) <- ((true&&(!(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=0)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%y.0.i2_2 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_2) (* 1 main@%x.0.i1_2)) 0))))
+  (not (and true a!1))))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 0))))
+  (and true
+       a!1
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+       main@.lr.ph_1
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1)))))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  3)
+(define-fun main@%y.0.i2_0 () Int
+  (- 2))
+(define-fun main@%_1_0 () Int
+  0)
+(define-fun main@%x.0.i1_2 () Int
+  1)
+(define-fun main@%y.0.i2_2 () Int
+  (- 1))
+(define-fun main@%x.0.i1_1 () Int
+  1)
+(define-fun main@%y.0.i2_1 () Int
+  (- 1))
+(define-fun main@%_5_0 () Bool
+  true)
+(define-fun main@.lr.ph_1 () Bool
+  true)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@%_4_0 () Int
+  (- 1))
+(define-fun main@%_3_0 () Int
+  1)
+Verification condition: (true&&(!(main@%_1_0<=1))) <- ((true&&(!(main@%_1_0<=1)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%y.0.i2_2 () Int)
+
+(assert (not (and true (not (<= main@%_1_0 1)))))
+(assert (and true
+     (not (<= main@%_1_0 1))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+     main@.lr.ph_1
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1))))
+(check-sat)
+
+verify horn rule : (main@entry @unknown_0) <- true
+generate pos sam
+verify horn rule : main@verifier.error.split <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+Verification condition: false <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%_2_0 () Bool)
+(declare-fun main@%_0_0 () Int)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+
+(assert (not false))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@verifier.error_0 (and main@verifier.error_0 main@entry_0))
+     (=> (and main@verifier.error_0 main@entry_0) (not main@%_2_0))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%y.0.i.lcssa_0 3))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%x.0.i.lcssa_0 4))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+verify horn rule : (verifier.error true true true) <- true
+generate pos sam
+verify horn rule : (verifier.error true false true) <- true
+generate pos sam
+verify horn rule : (verifier.error false true true) <- true
+generate pos sam
+verify horn rule : (verifier.error false false false) <- true
+generate pos sam
+verify horn rule : (main@.lr.ph main@%y.0.i2_1 main@%x.0.i1_1 main@%_1_0) <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+Verification condition: (true&&(!(main@%_1_0<=1))) <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+smt formulas 
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@%_0_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%_2_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@.lr.ph.preheader_0 () Bool)
+
+(assert (not (and true (not (<= main@%_1_0 1)))))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@.lr.ph.preheader_0 (and main@.lr.ph.preheader_0 main@entry_0))
+     (=> (and main@.lr.ph.preheader_0 main@entry_0) main@%_2_0)
+     (=> main@.lr.ph_0 (and main@.lr.ph_0 main@.lr.ph.preheader_0))
+     main@.lr.ph_0
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%y.0.i2_0 3))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%x.0.i1_0 4))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%y.0.i2_1 main@%y.0.i2_0))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%x.0.i1_1 main@%x.0.i1_0))))
+(check-sat)
+
+verify horn rule : main@verifier.error.split <- ((main@.lr.ph main@%y.0.i2_0 main@%x.0.i1_0 main@%_1_0)&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+Verification condition: false <- ((true&&(!(main@%_1_0<=1)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (and true
+     (not (<= main@%_1_0 1))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@verifier.error.loopexit_0
+         (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_0 main@%_4_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_0 main@%_3_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_1 main@%.lcssa6_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_1 main@%.lcssa_0))
+     (=> main@verifier.error_0
+         (and main@verifier.error_0 main@verifier.error.loopexit_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+z3 model (define-fun main@%_1_0 () Int
+  2)
+(define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%y.0.i2_0 () Int
+  1)
+(define-fun main@%.lcssa_1 () Int
+  1)
+(define-fun main@%.lcssa6_1 () Int
+  2)
+(define-fun main@%.lcssa_0 () Int
+  1)
+(define-fun main@%.lcssa6_0 () Int
+  2)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  1)
+(define-fun main@%y.0.i.lcssa_1 () Int
+  2)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  1)
+(define-fun main@%y.0.i.lcssa_0 () Int
+  2)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  2)
+(define-fun main@%_3_0 () Int
+  1)
+Verification condition: false <- ((true&&(!(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=1)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 1))))
+  (and true
+       a!1
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@verifier.error.loopexit_0
+           (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_0 main@%_4_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_0 main@%_3_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_1 main@%.lcssa6_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_1 main@%.lcssa_0))
+       (=> main@verifier.error_0
+           (and main@verifier.error_0 main@verifier.error.loopexit_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+       (=> main@verifier.error_0
+           (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+       (=> main@verifier.error_0 main@%_6_0)
+       (=> main@verifier.error.split_0
+           (and main@verifier.error.split_0 main@verifier.error_0))
+       main@verifier.error.split_0)))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%y.0.i2_0 () Int
+  2)
+(define-fun main@%_1_0 () Int
+  3)
+(define-fun main@%.lcssa_1 () Int
+  2)
+(define-fun main@%.lcssa6_1 () Int
+  3)
+(define-fun main@%.lcssa_0 () Int
+  2)
+(define-fun main@%.lcssa6_0 () Int
+  3)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  2)
+(define-fun main@%y.0.i.lcssa_1 () Int
+  3)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  2)
+(define-fun main@%y.0.i.lcssa_0 () Int
+  3)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  3)
+(define-fun main@%_3_0 () Int
+  2)
+Verification condition: false <- ((true&&(!(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=2)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 2))))
+  (and true
+       a!1
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@verifier.error.loopexit_0
+           (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_0 main@%_4_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_0 main@%_3_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_1 main@%.lcssa6_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_1 main@%.lcssa_0))
+       (=> main@verifier.error_0
+           (and main@verifier.error_0 main@verifier.error.loopexit_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+       (=> main@verifier.error_0
+           (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+       (=> main@verifier.error_0 main@%_6_0)
+       (=> main@verifier.error.split_0
+           (and main@verifier.error.split_0 main@verifier.error_0))
+       main@verifier.error.split_0)))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%y.0.i2_0 () Int
+  3)
+(define-fun main@%_1_0 () Int
+  4)
+(define-fun main@%.lcssa_1 () Int
+  3)
+(define-fun main@%.lcssa6_1 () Int
+  4)
+(define-fun main@%.lcssa_0 () Int
+  3)
+(define-fun main@%.lcssa6_0 () Int
+  4)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  3)
+(define-fun main@%y.0.i.lcssa_1 () Int
+  4)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  3)
+(define-fun main@%y.0.i.lcssa_0 () Int
+  4)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  4)
+(define-fun main@%_3_0 () Int
+  3)
+Verification condition: false <- ((true&&(!(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=3)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 3))))
+  (and true
+       a!1
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@verifier.error.loopexit_0
+           (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_0 main@%_4_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_0 main@%_3_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_1 main@%.lcssa6_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_1 main@%.lcssa_0))
+       (=> main@verifier.error_0
+           (and main@verifier.error_0 main@verifier.error.loopexit_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+       (=> main@verifier.error_0
+           (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+       (=> main@verifier.error_0 main@%_6_0)
+       (=> main@verifier.error.split_0
+           (and main@verifier.error.split_0 main@verifier.error_0))
+       main@verifier.error.split_0)))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%y.0.i2_0 () Int
+  4)
+(define-fun main@%_1_0 () Int
+  5)
+(define-fun main@%.lcssa_1 () Int
+  4)
+(define-fun main@%.lcssa6_1 () Int
+  5)
+(define-fun main@%.lcssa_0 () Int
+  4)
+(define-fun main@%.lcssa6_0 () Int
+  5)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  4)
+(define-fun main@%y.0.i.lcssa_1 () Int
+  5)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  4)
+(define-fun main@%y.0.i.lcssa_0 () Int
+  5)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  5)
+(define-fun main@%_3_0 () Int
+  4)
+Verification condition: false <- ((true&&(!(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=4)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 4))))
+  (and true
+       a!1
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@verifier.error.loopexit_0
+           (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_0 main@%_4_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_0 main@%_3_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_1 main@%.lcssa6_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_1 main@%.lcssa_0))
+       (=> main@verifier.error_0
+           (and main@verifier.error_0 main@verifier.error.loopexit_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+       (=> main@verifier.error_0
+           (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+       (=> main@verifier.error_0 main@%_6_0)
+       (=> main@verifier.error.split_0
+           (and main@verifier.error.split_0 main@verifier.error_0))
+       main@verifier.error.split_0)))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%y.0.i2_0 () Int
+  5)
+(define-fun main@%_1_0 () Int
+  6)
+(define-fun main@%.lcssa_1 () Int
+  5)
+(define-fun main@%.lcssa6_1 () Int
+  6)
+(define-fun main@%.lcssa_0 () Int
+  5)
+(define-fun main@%.lcssa6_0 () Int
+  6)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  5)
+(define-fun main@%y.0.i.lcssa_1 () Int
+  6)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  5)
+(define-fun main@%y.0.i.lcssa_0 () Int
+  6)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  6)
+(define-fun main@%_3_0 () Int
+  5)
+Verification condition: false <- ((true&&(!(main@%x.0.i1_0<=3)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (and true
+     (not (<= main@%x.0.i1_0 3))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@verifier.error.loopexit_0
+         (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_0 main@%_4_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_0 main@%_3_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_1 main@%.lcssa6_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_1 main@%.lcssa_0))
+     (=> main@verifier.error_0
+         (and main@verifier.error_0 main@verifier.error.loopexit_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+verify horn rule : (main@.lr.ph main@%y.0.i2_2 main@%x.0.i1_2 main@%_1_0) <- ((main@.lr.ph main@%y.0.i2_0 main@%x.0.i1_0 main@%_1_0)&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+Verification condition: (true&&(!(main@%x.0.i1_2<=3))) <- ((true&&(!(main@%x.0.i1_0<=3)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_2 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+
+(assert (not (and true (not (<= main@%x.0.i1_2 3)))))
+(assert (and true
+     (not (<= main@%x.0.i1_0 3))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+     main@.lr.ph_1
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1))))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  4)
+(define-fun main@%y.0.i2_0 () Int
+  (- 1))
+(define-fun main@%_1_0 () Int
+  1)
+(define-fun main@%x.0.i1_2 () Int
+  3)
+(define-fun main@%y.0.i2_2 () Int
+  0)
+(define-fun main@%x.0.i1_1 () Int
+  3)
+(define-fun main@%y.0.i2_1 () Int
+  0)
+(define-fun main@%_5_0 () Bool
+  true)
+(define-fun main@.lr.ph_1 () Bool
+  true)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@%_4_0 () Int
+  0)
+(define-fun main@%_3_0 () Int
+  3)
+Verification condition: (true&&(!(((1*main@%y.0.i2_2)+(1*main@%x.0.i1_2))<=5))) <- ((true&&(!(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=5)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%y.0.i2_2 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_2) (* 1 main@%x.0.i1_2)) 5))))
+  (not (and true a!1))))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 5))))
+  (and true
+       a!1
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+       main@.lr.ph_1
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1)))))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  8)
+(define-fun main@%y.0.i2_0 () Int
+  (- 2))
+(define-fun main@%_1_0 () Int
+  0)
+(define-fun main@%x.0.i1_2 () Int
+  6)
+(define-fun main@%y.0.i2_2 () Int
+  (- 1))
+(define-fun main@%x.0.i1_1 () Int
+  6)
+(define-fun main@%y.0.i2_1 () Int
+  (- 1))
+(define-fun main@%_5_0 () Bool
+  true)
+(define-fun main@.lr.ph_1 () Bool
+  true)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@%_4_0 () Int
+  (- 1))
+(define-fun main@%_3_0 () Int
+  6)
+Verification condition: (true&&(!(((1*main@%y.0.i2_2)+(1*main@%x.0.i1_2))<=6))) <- ((true&&(!(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=6)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%y.0.i2_2 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_2) (* 1 main@%x.0.i1_2)) 6))))
+  (not (and true a!1))))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 6))))
+  (and true
+       a!1
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+       main@.lr.ph_1
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1)))))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  9)
+(define-fun main@%y.0.i2_0 () Int
+  (- 2))
+(define-fun main@%_1_0 () Int
+  0)
+(define-fun main@%x.0.i1_2 () Int
+  7)
+(define-fun main@%y.0.i2_2 () Int
+  (- 1))
+(define-fun main@%x.0.i1_1 () Int
+  7)
+(define-fun main@%y.0.i2_1 () Int
+  (- 1))
+(define-fun main@%_5_0 () Bool
+  true)
+(define-fun main@.lr.ph_1 () Bool
+  true)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@%_4_0 () Int
+  (- 1))
+(define-fun main@%_3_0 () Int
+  7)
+Verification condition: [&&
+  true
+  !(((1*main@%y.0.i2_2)+(-1*main@%_1_0))<=-2)
+  !(main@%x.0.i1_2<=1)
+] <- ([&&
+  true
+  !(((1*main@%y.0.i2_0)+(-1*main@%_1_0))<=-2)
+  !(main@%x.0.i1_0<=1)
+]&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%y.0.i2_2 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_2) (* (- 1) main@%_1_0)) (- 2)))))
+  (not (and true a!1 (not (<= main@%x.0.i1_2 1))))))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* (- 1) main@%_1_0)) (- 2)))))
+  (and true
+       a!1
+       (not (<= main@%x.0.i1_0 1))
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+       main@.lr.ph_1
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1)))))
+(check-sat)
+
+verify horn rule : main@verifier.error.split <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+Verification condition: false <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%_2_0 () Bool)
+(declare-fun main@%_0_0 () Int)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+
+(assert (not false))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@verifier.error_0 (and main@verifier.error_0 main@entry_0))
+     (=> (and main@verifier.error_0 main@entry_0) (not main@%_2_0))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%y.0.i.lcssa_0 3))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%x.0.i.lcssa_0 4))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+verify horn rule : (main@.lr.ph main@%y.0.i2_1 main@%x.0.i1_1 main@%_1_0) <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+Verification condition: [&&
+  true
+  !(((1*main@%y.0.i2_1)+(-1*main@%_1_0))<=-2)
+  !(main@%x.0.i1_1<=1)
+] <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+smt formulas 
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@.lr.ph.preheader_0 () Bool)
+(declare-fun main@%_2_0 () Bool)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_0_0 () Int)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun @unknown_0 () Int)
+
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_1) (* (- 1) main@%_1_0)) (- 2)))))
+  (not (and true a!1 (not (<= main@%x.0.i1_1 1))))))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@.lr.ph.preheader_0 (and main@.lr.ph.preheader_0 main@entry_0))
+     (=> (and main@.lr.ph.preheader_0 main@entry_0) main@%_2_0)
+     (=> main@.lr.ph_0 (and main@.lr.ph_0 main@.lr.ph.preheader_0))
+     main@.lr.ph_0
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%y.0.i2_0 3))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%x.0.i1_0 4))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%y.0.i2_1 main@%y.0.i2_0))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%x.0.i1_1 main@%x.0.i1_0))))
+(check-sat)
+
+z3 model (define-fun main@%_1_0 () Int
+  5)
+(define-fun main@%x.0.i1_1 () Int
+  4)
+(define-fun main@%y.0.i2_1 () Int
+  3)
+(define-fun main@%x.0.i1_0 () Int
+  4)
+(define-fun main@%y.0.i2_0 () Int
+  3)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@.lr.ph.preheader_0 () Bool
+  true)
+(define-fun main@entry_0 () Bool
+  true)
+(define-fun main@%_2_0 () Bool
+  true)
+(define-fun @unknown_0 () Int
+  0)
+(define-fun main@%_0_0 () Int
+  0)
+Verification condition: true <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+smt formulas 
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_0_0 () Int)
+(declare-fun main@%_2_0 () Bool)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@.lr.ph.preheader_0 () Bool)
+
+(assert (not true))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@.lr.ph.preheader_0 (and main@.lr.ph.preheader_0 main@entry_0))
+     (=> (and main@.lr.ph.preheader_0 main@entry_0) main@%_2_0)
+     (=> main@.lr.ph_0 (and main@.lr.ph_0 main@.lr.ph.preheader_0))
+     main@.lr.ph_0
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%y.0.i2_0 3))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%x.0.i1_0 4))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%y.0.i2_1 main@%y.0.i2_0))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%x.0.i1_1 main@%x.0.i1_0))))
+(check-sat)
+
+verify horn rule : main@verifier.error.split <- ((main@.lr.ph main@%y.0.i2_0 main@%x.0.i1_0 main@%_1_0)&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+Verification condition: false <- (true&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (and true
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@verifier.error.loopexit_0
+         (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_0 main@%_4_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_0 main@%_3_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_1 main@%.lcssa6_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_1 main@%.lcssa_0))
+     (=> main@verifier.error_0
+         (and main@verifier.error_0 main@verifier.error.loopexit_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%_1_0 () Int
+  0)
+(define-fun main@%y.0.i2_0 () Int
+  (- 1))
+(define-fun main@%.lcssa_1 () Int
+  (- 1))
+(define-fun main@%.lcssa6_1 () Int
+  0)
+(define-fun main@%.lcssa_0 () Int
+  (- 1))
+(define-fun main@%.lcssa6_0 () Int
+  0)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  (- 1))
+(define-fun main@%y.0.i.lcssa_1 () Int
+  0)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  (- 1))
+(define-fun main@%y.0.i.lcssa_0 () Int
+  0)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  0)
+(define-fun main@%_3_0 () Int
+  (- 1))
+Verification condition: false <- ((true&&(!(main@%y.0.i2_0<=-1)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (and true
+     (not (<= main@%y.0.i2_0 (- 1)))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@verifier.error.loopexit_0
+         (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_0 main@%_4_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_0 main@%_3_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_1 main@%.lcssa6_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_1 main@%.lcssa_0))
+     (=> main@verifier.error_0
+         (and main@verifier.error_0 main@verifier.error.loopexit_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+z3 model (define-fun main@%y.0.i2_0 () Int
+  0)
+(define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%_1_0 () Int
+  1)
+(define-fun main@%.lcssa_1 () Int
+  0)
+(define-fun main@%.lcssa6_1 () Int
+  1)
+(define-fun main@%.lcssa_0 () Int
+  0)
+(define-fun main@%.lcssa6_0 () Int
+  1)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  0)
+(define-fun main@%y.0.i.lcssa_1 () Int
+  1)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  0)
+(define-fun main@%y.0.i.lcssa_0 () Int
+  1)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  1)
+(define-fun main@%_3_0 () Int
+  0)
+Verification condition: false <- ((true&&(!(main@%y.0.i2_0<=0)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (and true
+     (not (<= main@%y.0.i2_0 0))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@verifier.error.loopexit_0
+         (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_0 main@%_4_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_0 main@%_3_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_1 main@%.lcssa6_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_1 main@%.lcssa_0))
+     (=> main@verifier.error_0
+         (and main@verifier.error_0 main@verifier.error.loopexit_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+z3 model (define-fun main@%y.0.i2_0 () Int
+  1)
+(define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%_1_0 () Int
+  2)
+(define-fun main@%.lcssa_1 () Int
+  1)
+(define-fun main@%.lcssa6_1 () Int
+  2)
+(define-fun main@%.lcssa_0 () Int
+  1)
+(define-fun main@%.lcssa6_0 () Int
+  2)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  1)
+(define-fun main@%y.0.i.lcssa_1 () Int
+  2)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  1)
+(define-fun main@%y.0.i.lcssa_0 () Int
+  2)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  2)
+(define-fun main@%_3_0 () Int
+  1)
+Verification condition: false <- ((true&&(!(main@%x.0.i1_0<=0)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (and true
+     (not (<= main@%x.0.i1_0 0))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@verifier.error.loopexit_0
+         (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_0 main@%_4_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_0 main@%_3_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_1 main@%.lcssa6_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_1 main@%.lcssa_0))
+     (=> main@verifier.error_0
+         (and main@verifier.error_0 main@verifier.error.loopexit_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+verify horn rule : (main@.lr.ph main@%y.0.i2_2 main@%x.0.i1_2 main@%_1_0) <- ((main@.lr.ph main@%y.0.i2_0 main@%x.0.i1_0 main@%_1_0)&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+Verification condition: (true&&(!(main@%x.0.i1_2<=0))) <- ((true&&(!(main@%x.0.i1_0<=0)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_2 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+
+(assert (not (and true (not (<= main@%x.0.i1_2 0)))))
+(assert (and true
+     (not (<= main@%x.0.i1_0 0))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+     main@.lr.ph_1
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1))))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  1)
+(define-fun main@%y.0.i2_0 () Int
+  (- 1))
+(define-fun main@%_1_0 () Int
+  1)
+(define-fun main@%x.0.i1_2 () Int
+  0)
+(define-fun main@%y.0.i2_2 () Int
+  0)
+(define-fun main@%x.0.i1_1 () Int
+  0)
+(define-fun main@%y.0.i2_1 () Int
+  0)
+(define-fun main@%_5_0 () Bool
+  true)
+(define-fun main@.lr.ph_1 () Bool
+  true)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@%_4_0 () Int
+  0)
+(define-fun main@%_3_0 () Int
+  0)
+Verification condition: (true&&(!(((1*main@%y.0.i2_2)+(1*main@%x.0.i1_2))<=1))) <- ((true&&(!(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=1)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%y.0.i2_2 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_2) (* 1 main@%x.0.i1_2)) 1))))
+  (not (and true a!1))))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 1))))
+  (and true
+       a!1
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+       main@.lr.ph_1
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1)))))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  4)
+(define-fun main@%y.0.i2_0 () Int
+  (- 2))
+(define-fun main@%_1_0 () Int
+  0)
+(define-fun main@%x.0.i1_2 () Int
+  2)
+(define-fun main@%y.0.i2_2 () Int
+  (- 1))
+(define-fun main@%x.0.i1_1 () Int
+  2)
+(define-fun main@%y.0.i2_1 () Int
+  (- 1))
+(define-fun main@%_5_0 () Bool
+  true)
+(define-fun main@.lr.ph_1 () Bool
+  true)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@%_4_0 () Int
+  (- 1))
+(define-fun main@%_3_0 () Int
+  2)
+Verification condition: (true&&(!(((1*main@%y.0.i2_2)+(1*main@%x.0.i1_2))<=2))) <- ((true&&(!(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=2)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%y.0.i2_2 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_2) (* 1 main@%x.0.i1_2)) 2))))
+  (not (and true a!1))))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 2))))
+  (and true
+       a!1
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+       main@.lr.ph_1
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1)))))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  5)
+(define-fun main@%y.0.i2_0 () Int
+  (- 2))
+(define-fun main@%_1_0 () Int
+  0)
+(define-fun main@%x.0.i1_2 () Int
+  3)
+(define-fun main@%y.0.i2_2 () Int
+  (- 1))
+(define-fun main@%x.0.i1_1 () Int
+  3)
+(define-fun main@%y.0.i2_1 () Int
+  (- 1))
+(define-fun main@%_5_0 () Bool
+  true)
+(define-fun main@.lr.ph_1 () Bool
+  true)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@%_4_0 () Int
+  (- 1))
+(define-fun main@%_3_0 () Int
+  3)
+Verification condition: (true&&(!(main@%_1_0<=2))) <- ((true&&(!(main@%_1_0<=2)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%y.0.i2_2 () Int)
+
+(assert (not (and true (not (<= main@%_1_0 2)))))
+(assert (and true
+     (not (<= main@%_1_0 2))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+     main@.lr.ph_1
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1))))
+(check-sat)
+
+verify horn rule : (main@entry @unknown_0) <- true
+generate pos sam
+verify horn rule : main@verifier.error.split <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+Verification condition: false <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%_2_0 () Bool)
+(declare-fun main@%_0_0 () Int)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+
+(assert (not false))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@verifier.error_0 (and main@verifier.error_0 main@entry_0))
+     (=> (and main@verifier.error_0 main@entry_0) (not main@%_2_0))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%y.0.i.lcssa_0 3))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%x.0.i.lcssa_0 4))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+verify horn rule : (verifier.error true true true) <- true
+generate pos sam
+verify horn rule : (verifier.error true false true) <- true
+generate pos sam
+verify horn rule : (verifier.error false true true) <- true
+generate pos sam
+verify horn rule : (verifier.error false false false) <- true
+generate pos sam
+verify horn rule : (main@.lr.ph main@%y.0.i2_1 main@%x.0.i1_1 main@%_1_0) <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+Verification condition: (true&&(!(main@%_1_0<=2))) <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+smt formulas 
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@%_0_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%_2_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@.lr.ph.preheader_0 () Bool)
+
+(assert (not (and true (not (<= main@%_1_0 2)))))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@.lr.ph.preheader_0 (and main@.lr.ph.preheader_0 main@entry_0))
+     (=> (and main@.lr.ph.preheader_0 main@entry_0) main@%_2_0)
+     (=> main@.lr.ph_0 (and main@.lr.ph_0 main@.lr.ph.preheader_0))
+     main@.lr.ph_0
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%y.0.i2_0 3))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%x.0.i1_0 4))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%y.0.i2_1 main@%y.0.i2_0))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%x.0.i1_1 main@%x.0.i1_0))))
+(check-sat)
+
+verify horn rule : main@verifier.error.split <- ((main@.lr.ph main@%y.0.i2_0 main@%x.0.i1_0 main@%_1_0)&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+Verification condition: false <- ((true&&(!(main@%_1_0<=2)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (and true
+     (not (<= main@%_1_0 2))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@verifier.error.loopexit_0
+         (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_0 main@%_4_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_0 main@%_3_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_1 main@%.lcssa6_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_1 main@%.lcssa_0))
+     (=> main@verifier.error_0
+         (and main@verifier.error_0 main@verifier.error.loopexit_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+z3 model (define-fun main@%_1_0 () Int
+  3)
+(define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%y.0.i2_0 () Int
+  2)
+(define-fun main@%.lcssa_1 () Int
+  2)
+(define-fun main@%.lcssa6_1 () Int
+  3)
+(define-fun main@%.lcssa_0 () Int
+  2)
+(define-fun main@%.lcssa6_0 () Int
+  3)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  2)
+(define-fun main@%y.0.i.lcssa_1 () Int
+  3)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  2)
+(define-fun main@%y.0.i.lcssa_0 () Int
+  3)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  3)
+(define-fun main@%_3_0 () Int
+  2)
+Verification condition: false <- ((true&&(!(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=3)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 3))))
+  (and true
+       a!1
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@verifier.error.loopexit_0
+           (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_0 main@%_4_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_0 main@%_3_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_1 main@%.lcssa6_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_1 main@%.lcssa_0))
+       (=> main@verifier.error_0
+           (and main@verifier.error_0 main@verifier.error.loopexit_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+       (=> main@verifier.error_0
+           (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+       (=> main@verifier.error_0 main@%_6_0)
+       (=> main@verifier.error.split_0
+           (and main@verifier.error.split_0 main@verifier.error_0))
+       main@verifier.error.split_0)))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%y.0.i2_0 () Int
+  4)
+(define-fun main@%_1_0 () Int
+  5)
+(define-fun main@%.lcssa_1 () Int
+  4)
+(define-fun main@%.lcssa6_1 () Int
+  5)
+(define-fun main@%.lcssa_0 () Int
+  4)
+(define-fun main@%.lcssa6_0 () Int
+  5)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  4)
+(define-fun main@%y.0.i.lcssa_1 () Int
+  5)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  4)
+(define-fun main@%y.0.i.lcssa_0 () Int
+  5)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  5)
+(define-fun main@%_3_0 () Int
+  4)
+Verification condition: false <- ((true&&(!(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=4)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 4))))
+  (and true
+       a!1
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@verifier.error.loopexit_0
+           (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_0 main@%_4_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_0 main@%_3_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_1 main@%.lcssa6_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_1 main@%.lcssa_0))
+       (=> main@verifier.error_0
+           (and main@verifier.error_0 main@verifier.error.loopexit_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+       (=> main@verifier.error_0
+           (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+       (=> main@verifier.error_0 main@%_6_0)
+       (=> main@verifier.error.split_0
+           (and main@verifier.error.split_0 main@verifier.error_0))
+       main@verifier.error.split_0)))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%y.0.i2_0 () Int
+  5)
+(define-fun main@%_1_0 () Int
+  6)
+(define-fun main@%.lcssa_1 () Int
+  5)
+(define-fun main@%.lcssa6_1 () Int
+  6)
+(define-fun main@%.lcssa_0 () Int
+  5)
+(define-fun main@%.lcssa6_0 () Int
+  6)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  5)
+(define-fun main@%y.0.i.lcssa_1 () Int
+  6)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  5)
+(define-fun main@%y.0.i.lcssa_0 () Int
+  6)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  6)
+(define-fun main@%_3_0 () Int
+  5)
+Verification condition: false <- ((true&&(!(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=5)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 5))))
+  (and true
+       a!1
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@verifier.error.loopexit_0
+           (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_0 main@%_4_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_0 main@%_3_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_1 main@%.lcssa6_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_1 main@%.lcssa_0))
+       (=> main@verifier.error_0
+           (and main@verifier.error_0 main@verifier.error.loopexit_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+       (=> main@verifier.error_0
+           (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+       (=> main@verifier.error_0 main@%_6_0)
+       (=> main@verifier.error.split_0
+           (and main@verifier.error.split_0 main@verifier.error_0))
+       main@verifier.error.split_0)))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%y.0.i2_0 () Int
+  6)
+(define-fun main@%_1_0 () Int
+  7)
+(define-fun main@%.lcssa_1 () Int
+  6)
+(define-fun main@%.lcssa6_1 () Int
+  7)
+(define-fun main@%.lcssa_0 () Int
+  6)
+(define-fun main@%.lcssa6_0 () Int
+  7)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  6)
+(define-fun main@%y.0.i.lcssa_1 () Int
+  7)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  6)
+(define-fun main@%y.0.i.lcssa_0 () Int
+  7)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  7)
+(define-fun main@%_3_0 () Int
+  6)
+Verification condition: false <- ((true&&(!(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=6)))&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 6))))
+  (and true
+       a!1
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@verifier.error.loopexit_0
+           (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_0 main@%_4_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_0 main@%_3_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_1 main@%.lcssa6_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_1 main@%.lcssa_0))
+       (=> main@verifier.error_0
+           (and main@verifier.error_0 main@verifier.error.loopexit_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+       (=> main@verifier.error_0
+           (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+       (=> main@verifier.error_0 main@%_6_0)
+       (=> main@verifier.error.split_0
+           (and main@verifier.error.split_0 main@verifier.error_0))
+       main@verifier.error.split_0)))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  0)
+(define-fun main@%y.0.i2_0 () Int
+  7)
+(define-fun main@%_1_0 () Int
+  8)
+(define-fun main@%.lcssa_1 () Int
+  7)
+(define-fun main@%.lcssa6_1 () Int
+  8)
+(define-fun main@%.lcssa_0 () Int
+  7)
+(define-fun main@%.lcssa6_0 () Int
+  8)
+(define-fun main@%x.0.i.lcssa_1 () Int
+  7)
+(define-fun main@%y.0.i.lcssa_1 () Int
+  8)
+(define-fun main@%x.0.i.lcssa_0 () Int
+  7)
+(define-fun main@%y.0.i.lcssa_0 () Int
+  8)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@verifier.error.split_0 () Bool
+  true)
+(define-fun main@verifier.error_0 () Bool
+  true)
+(define-fun main@%_6_0 () Bool
+  true)
+(define-fun main@verifier.error.loopexit_0 () Bool
+  true)
+(define-fun main@%_5_0 () Bool
+  false)
+(define-fun main@%_4_0 () Int
+  8)
+(define-fun main@%_3_0 () Int
+  7)
+Verification condition: false <- ([&&
+  true
+  !(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=6)
+  ((1*main@%y.0.i2_0)+(-1*main@%x.0.i1_0))<=2
+]&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 6))))
+  (and true
+       a!1
+       (<= (+ (* 1 main@%y.0.i2_0) (* (- 1) main@%x.0.i1_0)) 2)
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@verifier.error.loopexit_0
+           (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_0 main@%_4_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_0 main@%_3_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa6_1 main@%.lcssa6_0))
+       (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+           (= main@%.lcssa_1 main@%.lcssa_0))
+       (=> main@verifier.error_0
+           (and main@verifier.error_0 main@verifier.error.loopexit_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+       (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+           (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+       (=> main@verifier.error_0
+           (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+       (=> main@verifier.error_0 main@%_6_0)
+       (=> main@verifier.error.split_0
+           (and main@verifier.error.split_0 main@verifier.error_0))
+       main@verifier.error.split_0)))
+(check-sat)
+
+verify horn rule : (main@.lr.ph main@%y.0.i2_2 main@%x.0.i1_2 main@%_1_0) <- ((main@.lr.ph main@%y.0.i2_0 main@%x.0.i1_0 main@%_1_0)&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+Verification condition: [&&
+  true
+  !(((1*main@%y.0.i2_2)+(1*main@%x.0.i1_2))<=6)
+  ((1*main@%y.0.i2_2)+(-1*main@%x.0.i1_2))<=2
+] <- ([&&
+  true
+  !(((1*main@%y.0.i2_0)+(1*main@%x.0.i1_0))<=6)
+  ((1*main@%y.0.i2_0)+(-1*main@%x.0.i1_0))<=2
+]&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%y.0.i2_2 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_2) (* 1 main@%x.0.i1_2)) 6))))
+(let ((a!2 (and true
+                a!1
+                (<= (+ (* 1 main@%y.0.i2_2) (* (- 1) main@%x.0.i1_2)) 2))))
+  (not a!2))))
+(assert (let ((a!1 (not (<= (+ (* 1 main@%y.0.i2_0) (* 1 main@%x.0.i1_0)) 6))))
+  (and true
+       a!1
+       (<= (+ (* 1 main@%y.0.i2_0) (* (- 1) main@%x.0.i1_0)) 2)
+       true
+       (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+       (= main@%_4_0 (+ main@%y.0.i2_0 1))
+       (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+       (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+       main@.lr.ph_1
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+       (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1)))))
+(check-sat)
+
+z3 model (define-fun main@%x.0.i1_0 () Int
+  9)
+(define-fun main@%y.0.i2_0 () Int
+  (- 2))
+(define-fun main@%_1_0 () Int
+  0)
+(define-fun main@%x.0.i1_2 () Int
+  7)
+(define-fun main@%y.0.i2_2 () Int
+  (- 1))
+(define-fun main@%x.0.i1_1 () Int
+  7)
+(define-fun main@%y.0.i2_1 () Int
+  (- 1))
+(define-fun main@%_5_0 () Bool
+  true)
+(define-fun main@.lr.ph_1 () Bool
+  true)
+(define-fun main@.lr.ph_0 () Bool
+  true)
+(define-fun main@%_4_0 () Int
+  (- 1))
+(define-fun main@%_3_0 () Int
+  7)
+Verification condition: [&&
+  true
+  !(main@%x.0.i1_2<=1)
+  !(main@%y.0.i2_2<=0)
+] <- ([&&
+  true
+  !(main@%x.0.i1_0<=1)
+  !(main@%y.0.i2_0<=0)
+]&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%y.0.i2_2 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+
+(assert (not (and true (not (<= main@%x.0.i1_2 1)) (not (<= main@%y.0.i2_2 0)))))
+(assert (and true
+     (not (<= main@%x.0.i1_0 1))
+     (not (<= main@%y.0.i2_0 0))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+     main@.lr.ph_1
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1))))
+(check-sat)
+
+verify horn rule : main@verifier.error.split <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+Verification condition: false <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%_2_0 () Bool)
+(declare-fun main@%_0_0 () Int)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+
+(assert (not false))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@verifier.error_0 (and main@verifier.error_0 main@entry_0))
+     (=> (and main@verifier.error_0 main@entry_0) (not main@%_2_0))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%y.0.i.lcssa_0 3))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%x.0.i.lcssa_0 4))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+verify horn rule : (main@.lr.ph main@%y.0.i2_1 main@%x.0.i1_1 main@%_1_0) <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+Verification condition: [&&
+  true
+  !(main@%x.0.i1_1<=1)
+  !(main@%y.0.i2_1<=0)
+] <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+smt formulas 
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@.lr.ph.preheader_0 () Bool)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_0_0 () Int)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_2_0 () Bool)
+
+(assert (not (and true (not (<= main@%x.0.i1_1 1)) (not (<= main@%y.0.i2_1 0)))))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@.lr.ph.preheader_0 (and main@.lr.ph.preheader_0 main@entry_0))
+     (=> (and main@.lr.ph.preheader_0 main@entry_0) main@%_2_0)
+     (=> main@.lr.ph_0 (and main@.lr.ph_0 main@.lr.ph.preheader_0))
+     main@.lr.ph_0
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%y.0.i2_0 3))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%x.0.i1_0 4))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%y.0.i2_1 main@%y.0.i2_0))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%x.0.i1_1 main@%x.0.i1_0))))
+(check-sat)
+
+verify horn rule : (main@entry @unknown_0) <- true
+generate pos sam
+verify horn rule : main@verifier.error.split <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+Verification condition: false <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%_2_0 () Bool)
+(declare-fun main@%_0_0 () Int)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+
+(assert (not false))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@verifier.error_0 (and main@verifier.error_0 main@entry_0))
+     (=> (and main@verifier.error_0 main@entry_0) (not main@%_2_0))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%y.0.i.lcssa_0 3))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%x.0.i.lcssa_0 4))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+verify horn rule : (main@.lr.ph main@%y.0.i2_1 main@%x.0.i1_1 main@%_1_0) <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+Verification condition: [&&
+  true
+  !(main@%x.0.i1_1<=1)
+  !(main@%y.0.i2_1<=0)
+] <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+smt formulas 
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@.lr.ph.preheader_0 () Bool)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_0_0 () Int)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_2_0 () Bool)
+
+(assert (not (and true (not (<= main@%x.0.i1_1 1)) (not (<= main@%y.0.i2_1 0)))))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@.lr.ph.preheader_0 (and main@.lr.ph.preheader_0 main@entry_0))
+     (=> (and main@.lr.ph.preheader_0 main@entry_0) main@%_2_0)
+     (=> main@.lr.ph_0 (and main@.lr.ph_0 main@.lr.ph.preheader_0))
+     main@.lr.ph_0
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%y.0.i2_0 3))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%x.0.i1_0 4))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%y.0.i2_1 main@%y.0.i2_0))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%x.0.i1_1 main@%x.0.i1_0))))
+(check-sat)
+
+verify horn rule : (verifier.error true true true) <- true
+generate pos sam
+verify horn rule : (verifier.error true false true) <- true
+generate pos sam
+verify horn rule : (verifier.error false true true) <- true
+generate pos sam
+verify horn rule : (verifier.error false false false) <- true
+generate pos sam
+verify horn rule : main@verifier.error.split <- ((main@.lr.ph main@%y.0.i2_0 main@%x.0.i1_0 main@%_1_0)&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+Verification condition: false <- ([&&
+  true
+  !(main@%x.0.i1_0<=1)
+  !(main@%y.0.i2_0<=0)
+]&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@verifier.error.loopexit_0->(main@verifier.error.loopexit_0&&main@.lr.ph_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(!main@%_5_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_0=main@%_4_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_0=main@%_3_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa6_1=main@%.lcssa6_0)
+  (main@verifier.error.loopexit_0&&main@.lr.ph_0)->(main@%.lcssa_1=main@%.lcssa_0)
+  main@verifier.error_0->(main@verifier.error_0&&main@verifier.error.loopexit_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_0=main@%.lcssa6_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_0=main@%.lcssa_1)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@verifier.error.loopexit_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%.lcssa_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%.lcssa6_1 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@verifier.error.loopexit_0 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun main@%.lcssa6_0 () Int)
+(declare-fun main@%.lcssa_0 () Int)
+
+(assert (not false))
+(assert (and true
+     (not (<= main@%x.0.i1_0 1))
+     (not (<= main@%y.0.i2_0 0))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@verifier.error.loopexit_0
+         (and main@verifier.error.loopexit_0 main@.lr.ph_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0) (not main@%_5_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_0 main@%_4_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_0 main@%_3_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa6_1 main@%.lcssa6_0))
+     (=> (and main@verifier.error.loopexit_0 main@.lr.ph_0)
+         (= main@%.lcssa_1 main@%.lcssa_0))
+     (=> main@verifier.error_0
+         (and main@verifier.error_0 main@verifier.error.loopexit_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_0 main@%.lcssa6_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_0 main@%.lcssa_1))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@verifier.error.loopexit_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+verify horn rule : (main@.lr.ph main@%y.0.i2_2 main@%x.0.i1_2 main@%_1_0) <- ((main@.lr.ph main@%y.0.i2_0 main@%x.0.i1_0 main@%_1_0)&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+Verification condition: [&&
+  true
+  !(main@%x.0.i1_2<=1)
+  !(main@%y.0.i2_2<=0)
+] <- ([&&
+  true
+  !(main@%x.0.i1_0<=1)
+  !(main@%y.0.i2_0<=0)
+]&&[&&
+  true
+  main@%_3_0=(main@%y.0.i2_0+main@%x.0.i1_0)
+  main@%_4_0=(main@%y.0.i2_0+1)
+  main@%_5_0=(main@%_4_0<main@%_1_0)
+  main@.lr.ph_1->(main@.lr.ph_1&&main@.lr.ph_0)
+  main@.lr.ph_1
+  (main@.lr.ph_1&&main@.lr.ph_0)->main@%_5_0
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_1=main@%_4_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_1=main@%_3_0)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%y.0.i2_2=main@%y.0.i2_1)
+  (main@.lr.ph_1&&main@.lr.ph_0)->(main@%x.0.i1_2=main@%x.0.i1_1)
+])
+smt formulas 
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_3_0 () Int)
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@%x.0.i1_2 () Int)
+(declare-fun main@%_4_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_5_0 () Bool)
+(declare-fun main@%y.0.i2_2 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@.lr.ph_1 () Bool)
+(declare-fun main@.lr.ph_0 () Bool)
+
+(assert (not (and true (not (<= main@%x.0.i1_2 1)) (not (<= main@%y.0.i2_2 0)))))
+(assert (and true
+     (not (<= main@%x.0.i1_0 1))
+     (not (<= main@%y.0.i2_0 0))
+     true
+     (= main@%_3_0 (+ main@%y.0.i2_0 main@%x.0.i1_0))
+     (= main@%_4_0 (+ main@%y.0.i2_0 1))
+     (= main@%_5_0 (< main@%_4_0 main@%_1_0))
+     (=> main@.lr.ph_1 (and main@.lr.ph_1 main@.lr.ph_0))
+     main@.lr.ph_1
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) main@%_5_0)
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_1 main@%_4_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_1 main@%_3_0))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%y.0.i2_2 main@%y.0.i2_1))
+     (=> (and main@.lr.ph_1 main@.lr.ph_0) (= main@%x.0.i1_2 main@%x.0.i1_1))))
+(check-sat)
+
+verify horn rule : main@verifier.error.split <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+Verification condition: false <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%_2_0 () Bool)
+(declare-fun main@%_0_0 () Int)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+
+(assert (not false))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@verifier.error_0 (and main@verifier.error_0 main@entry_0))
+     (=> (and main@verifier.error_0 main@entry_0) (not main@%_2_0))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%y.0.i.lcssa_0 3))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%x.0.i.lcssa_0 4))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+verify horn rule : (main@.lr.ph main@%y.0.i2_1 main@%x.0.i1_1 main@%_1_0) <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+Verification condition: [&&
+  true
+  !(main@%x.0.i1_1<=1)
+  !(main@%y.0.i2_1<=0)
+] <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+smt formulas 
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@.lr.ph.preheader_0 () Bool)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_0_0 () Int)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_2_0 () Bool)
+
+(assert (not (and true (not (<= main@%x.0.i1_1 1)) (not (<= main@%y.0.i2_1 0)))))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@.lr.ph.preheader_0 (and main@.lr.ph.preheader_0 main@entry_0))
+     (=> (and main@.lr.ph.preheader_0 main@entry_0) main@%_2_0)
+     (=> main@.lr.ph_0 (and main@.lr.ph_0 main@.lr.ph.preheader_0))
+     main@.lr.ph_0
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%y.0.i2_0 3))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%x.0.i1_0 4))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%y.0.i2_1 main@%y.0.i2_0))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%x.0.i1_1 main@%x.0.i1_0))))
+(check-sat)
+
+verify horn rule : (main@entry @unknown_0) <- true
+generate pos sam
+verify horn rule : main@verifier.error.split <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+Verification condition: false <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@verifier.error_0->(main@verifier.error_0&&main@entry_0)
+  (main@verifier.error_0&&main@entry_0)->(!main@%_2_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_0=3)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_0=4)
+  (main@verifier.error_0&&main@entry_0)->(main@%y.0.i.lcssa_1=main@%y.0.i.lcssa_0)
+  (main@verifier.error_0&&main@entry_0)->(main@%x.0.i.lcssa_1=main@%x.0.i.lcssa_0)
+  main@verifier.error_0->(main@%_6_0=(main@%x.0.i.lcssa_1<main@%y.0.i.lcssa_1))
+  main@verifier.error_0->main@%_6_0
+  main@verifier.error.split_0->(main@verifier.error.split_0&&main@verifier.error_0)
+  main@verifier.error.split_0
+])
+smt formulas 
+(declare-fun main@verifier.error.split_0 () Bool)
+(declare-fun main@verifier.error_0 () Bool)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%y.0.i.lcssa_1 () Int)
+(declare-fun main@%_2_0 () Bool)
+(declare-fun main@%_0_0 () Int)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_6_0 () Bool)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@%y.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_0 () Int)
+(declare-fun main@%x.0.i.lcssa_1 () Int)
+
+(assert (not false))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@verifier.error_0 (and main@verifier.error_0 main@entry_0))
+     (=> (and main@verifier.error_0 main@entry_0) (not main@%_2_0))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%y.0.i.lcssa_0 3))
+     (=> (and main@verifier.error_0 main@entry_0) (= main@%x.0.i.lcssa_0 4))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%y.0.i.lcssa_1 main@%y.0.i.lcssa_0))
+     (=> (and main@verifier.error_0 main@entry_0)
+         (= main@%x.0.i.lcssa_1 main@%x.0.i.lcssa_0))
+     (=> main@verifier.error_0
+         (= main@%_6_0 (< main@%x.0.i.lcssa_1 main@%y.0.i.lcssa_1)))
+     (=> main@verifier.error_0 main@%_6_0)
+     (=> main@verifier.error.split_0
+         (and main@verifier.error.split_0 main@verifier.error_0))
+     main@verifier.error.split_0))
+(check-sat)
+
+verify horn rule : (main@.lr.ph main@%y.0.i2_1 main@%x.0.i1_1 main@%_1_0) <- ((main@entry @unknown_0)&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+Verification condition: [&&
+  true
+  !(main@%x.0.i1_1<=1)
+  !(main@%y.0.i2_1<=0)
+] <- (true&&[&&
+  true
+  main@%_0_0=@unknown_0
+  main@%_2_0=(main@%_1_0>3)
+  main@.lr.ph.preheader_0->(main@.lr.ph.preheader_0&&main@entry_0)
+  (main@.lr.ph.preheader_0&&main@entry_0)->main@%_2_0
+  main@.lr.ph_0->(main@.lr.ph_0&&main@.lr.ph.preheader_0)
+  main@.lr.ph_0
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_0=3)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_0=4)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%y.0.i2_1=main@%y.0.i2_0)
+  (main@.lr.ph_0&&main@.lr.ph.preheader_0)->(main@%x.0.i1_1=main@%x.0.i1_0)
+])
+smt formulas 
+(declare-fun main@%x.0.i1_0 () Int)
+(declare-fun main@entry_0 () Bool)
+(declare-fun main@.lr.ph.preheader_0 () Bool)
+(declare-fun main@%y.0.i2_0 () Int)
+(declare-fun main@%y.0.i2_1 () Int)
+(declare-fun main@%_1_0 () Int)
+(declare-fun main@%x.0.i1_1 () Int)
+(declare-fun main@%_0_0 () Int)
+(declare-fun main@.lr.ph_0 () Bool)
+(declare-fun @unknown_0 () Int)
+(declare-fun main@%_2_0 () Bool)
+
+(assert (not (and true (not (<= main@%x.0.i1_1 1)) (not (<= main@%y.0.i2_1 0)))))
+(assert (and true
+     true
+     (= main@%_0_0 @unknown_0)
+     (= main@%_2_0 (> main@%_1_0 3))
+     (=> main@.lr.ph.preheader_0 (and main@.lr.ph.preheader_0 main@entry_0))
+     (=> (and main@.lr.ph.preheader_0 main@entry_0) main@%_2_0)
+     (=> main@.lr.ph_0 (and main@.lr.ph_0 main@.lr.ph.preheader_0))
+     main@.lr.ph_0
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%y.0.i2_0 3))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0) (= main@%x.0.i1_0 4))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%y.0.i2_1 main@%y.0.i2_0))
+     (=> (and main@.lr.ph_0 main@.lr.ph.preheader_0)
+         (= main@%x.0.i1_1 main@%x.0.i1_0))))
+(check-sat)
+
+verify horn rule : (verifier.error true true true) <- true
+generate pos sam
+verify horn rule : (verifier.error true false true) <- true
+generate pos sam
+verify horn rule : (verifier.error false true true) <- true
+generate pos sam
+verify horn rule : (verifier.error false false false) <- true
+generate pos sam
+************** CHCs Solved in 3.614560e-01 (secs) **************
+
+************** Program is correct **************
+REL: (verifier.error V_0 V_1 V_2) -- invariant size: 1, 2, 
+REL: (main@entry V_0) -- invariant size: 1, 
+REL: (main@.lr.ph V_0 V_1 V_2) -- invariant size: 3, 
+REL: main@verifier.error.split -- invariant size: 1, 
+************** Program Correctness End **************
+
+************** Learning Statistics **************:
+Total CHC size: 9
+Total Relation size: 4
+Total Var size: 29
+Neg sample size: 12
+Pos sample size: 3
+Total sample size: 15
+Iteration number: 28
+************** Learning Statistics End **************
+
+unsat
+Function: main
+main@entry: true
+main@.lr.ph:
+		(!(main@%y.0.i2<=0))
+	(!(main@%x.0.i1<=1))
+main@verifier.error.split: false
+
+
+************** BRUNCH STATS ***************** 
+BRUNCH_STAT Result TRUE
+BRUNCH_STAT Horn 0.00
+BRUNCH_STAT HornClauseDB::loadZFixedPoint 0.00
+BRUNCH_STAT HornifyModule 0.00
+BRUNCH_STAT ICE inv 0.28
+BRUNCH_STAT LargeHornifyFunction 0.00
+BRUNCH_STAT seahorn_total 0.28
+************** BRUNCH STATS END ***************** 
