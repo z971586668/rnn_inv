@@ -379,9 +379,7 @@ namespace seahorn
 
 
     /// -- allocate LiveSymbols
-    cout<<"hornify module run on function"<<endl;
     auto r = m_ls.insert (std::make_pair (&F, LiveSymbols (F, m_efac, *m_sem)));
-    outs()<<"hornify module function name : "<<F.getName()<<"\n";
     assert (r.second);
     /// -- run LiveSymbols
     r.first->second.run ();
@@ -413,7 +411,6 @@ namespace seahorn
 
   const LiveSymbols& HornifyModule::getLiveSybols (const Function &F) const
   {
-    cout<<"m ls size : "<<m_ls.size()<<endl;
     auto it = m_ls.find (&F);
     assert (it != m_ls.end ());
     return it->second;
@@ -423,7 +420,6 @@ namespace seahorn
   {
     const BasicBlock *bb = &BB;
     Expr res = m_bbPreds [bb];
-    cout<<"m_bb preds : "<<res<<endl;
     if (res) return res;
 
 
@@ -433,7 +429,6 @@ namespace seahorn
 
     for (auto &v : lv)
     {
-      cout<<"live symbol : "<<v<<endl;
       assert (bind::isFapp (v));
       assert (bind::domainSz (bind::fname (v)) == 0);
       sorts.push_back (bind::typeOf (v));

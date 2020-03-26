@@ -52,7 +52,6 @@ namespace seahorn
     // memory regions
     for (const Instruction &inst : BB)
     {
-      // outs() <<"instruction name : "<<inst.getName()<<"\n";
       if (const CallInst *ci = dyn_cast<const CallInst> (&inst))
       {
         CallSite CS (const_cast<CallInst*> (ci));
@@ -295,9 +294,7 @@ namespace seahorn
 
   void LargeHornifyFunction::runOnFunction (Function &F)
   {
-    // outs()<<"large encoding"<<"\n";
     ScopedStats _st_("LargeHornifyFunction");
-    // outs()<<"function name in run on function "<<F.getName()<<"\n";
 
     if (m_sem.isAbstracted(F)) return;    
     
@@ -316,11 +313,9 @@ namespace seahorn
     
     ExprVector sorts;
 
-    // cout<<"cut points"<<endl;
     for (const CutPoint &cp : cpg)
     {
       Expr decl = m_parent.bbPredicate (cp.bb ());
-      cout<<"decl : "<<decl<<endl;
       m_db.registerRelation (decl);
       if (m_interproc) extractFunctionInfo (cp.bb ());
     }
@@ -369,7 +364,6 @@ namespace seahorn
           allVars.insert (args.begin (), args.end ());
           
           Expr pre = bind::fapp (m_parent.bbPredicate (cp.bb ()), args);
-          // cout<<"pre in cut point : "<<pre<<endl;
 
           
           ExprVector side;
@@ -380,7 +374,6 @@ namespace seahorn
                         std::inserter (allVars, allVars.begin ()));
 
           const BasicBlock &dst = edge->target ().bb ();
-          outs()<<"dst bb : "<<dst.getName()<<"\n";
           args.clear ();
           for (const Expr &v : ls.live (&dst)) args.push_back (s.read (v));
           // -- use a mutable gate to put everything together
@@ -388,7 +381,6 @@ namespace seahorn
                                             std::inserter (allVars, allVars.begin ()));
           allVars.insert (args.begin (), args.end ());
         
-          // cout<<"reduce : "<<ReduceFalse<<endl;
           if (ReduceFalse)
           {
             ufo::ScopedStats __st__ ("HornifyFunction.reduce-false");
@@ -434,9 +426,6 @@ namespace seahorn
           
           reached.insert (&dst);
           Expr post = bind::fapp (m_parent.bbPredicate (dst), args);
-          cout<<"post dst pred in cutpoint : "<<post<<endl;
-          cout<<"pre pred "<<pre<<endl;
-          cout<<"tau pred"<<tau<<endl;
           Expr body = boolop::land (pre, tau);
           // flatten body if needed
           if (FlattenBody &&
@@ -452,7 +441,6 @@ namespace seahorn
           }
           
           m_db.addRule (allVars, boolop::limp (body, post));
-          // cout<<"adding rule in cut point : "<<boolop::limp(body, post)<<endl;
         }
       }
     
@@ -462,7 +450,6 @@ namespace seahorn
     
     // Add error flag exit rules
     // bb (err, V) & err -> bb_exit (err , V)
-    // cout<<"exit : "<<exit<<endl;
     assert(exit);
 
     for (const CutPoint &cp : cpg)
@@ -471,7 +458,6 @@ namespace seahorn
       
       // XXX Can optimize. Only need the rules for BBs that trip the
       // error flag (directly or indirectly)
-      // cout<<"can opt, only need BB that tricks the error flag"<<endl;
       s.reset ();
       allVars.clear ();
       args.clear ();
@@ -482,19 +468,15 @@ namespace seahorn
       
       Expr pre = bind::fapp (m_parent.bbPredicate (cp.bb ()), args);
       pre = boolop::land (pre, s.read (m_sem.errorFlag (cp.bb ())));
-      // cout<<"pre pred after opt : "<<pre<<endl;
       
       args.clear ();
       for (const Expr &v : ls.live (exit)) args.push_back (s.read (v));
       allVars.insert (args.begin (), args.end ());
       
       Expr post = bind::fapp (m_parent.bbPredicate (*exit), args);
-      // cout<<"post pred after opt : "<<post<<endl;
       m_db.addRule (allVars, boolop::limp (pre, post));
-      // cout<<"adding rule in opt : "<<boolop::limp(pre,post)<<endl;
     }   
     
-    // cout<<"ls live exit size : "<<ls.live(exit).size()<<endl;
     if (F.getName ().equals ("main") && ls.live (exit).size () == 1)
       m_db.addQuery (bind::fapp (m_parent.bbPredicate(*exit), mk<TRUE> (m_efac)));
     else if (F.getName ().equals ("main") && ls.live (exit).size () == 0)
@@ -505,7 +487,6 @@ namespace seahorn
       // exit(live_at_exit) & !error.flag ->
       //     summary(true, false, false, regions, arguments, globals, return)
       
-      // cout<<"summary rule"<<endl;
       args.clear ();
       allVars.clear ();
       
@@ -515,7 +496,6 @@ namespace seahorn
       
       Expr pre = bind::fapp (m_parent.bbPredicate (*exit), args);
       pre = boolop::land (pre, boolop::lneg (s.read (m_sem.errorFlag (*exit))));
-      // cout<<"pre in summary : "<<pre<<endl;
       
       Expr falseE = mk<FALSE> (m_efac);
       ExprVector postArgs {mk<TRUE> (m_efac), falseE, falseE};
@@ -525,9 +505,7 @@ namespace seahorn
       expr::filter (mknary<OUT_G> (postArgs), bind::IsConst(),
                     std::inserter (allVars, allVars.begin ()));
       Expr post = bind::fapp (fi.sumPred, postArgs);
-      // cout<<"post in summary : "<<post<<endl;
       m_db.addRule (allVars, boolop::limp (pre, post));
-      // cout<<"adding rule in summary : "<<boolop::limp (pre, post)<<endl;
       
       // the error rule
       // bb_exit (true, V) -> S(true, false, true, V)

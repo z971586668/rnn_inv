@@ -1595,36 +1595,23 @@ namespace seahorn
 	  std::list<HornRule> workList;
 	  workList.insert(workList.end(), db.getRules().begin(), db.getRules().end());
 	  workList.reverse();
-    // debug
    
   	LOG("ice", errs() << "=========================== Constraint Solving of Horn Clauses ============================\n";);
 	  ZSolver<EZ3> solver(m_hm.getZContext());
 	  while (!workList.empty())
-	  //for (auto it = db.getRules().rbegin(); it != db.getRules().rend(); ++it)
-	  //for(auto it = db.getRules().begin(); it != db.getRules().end(); ++it)
 	  {
 		  HornRule r = workList.front();
 		  workList.pop_front();
 		  // HornRule r = *it;
 
 		  LOG("ice", errs() << "VERIFY Horn Rule: " << *(r.head()) << " <- " << *(r.body()) << "\n";);
+		  cout<<"verify horn rule : "<< *(r.head()) << " <- " << *(r.body()) <<endl;
 
 		  bool upd = false; int counter = 0; bool posUpd = false;
 
 		  Expr r_body = r.body();
 		  ExprVector body_pred_apps;
 		  get_all_pred_apps(r_body, db, std::back_inserter(body_pred_apps));
-
-		  //if(body_pred_apps.size() > 1)
-		  //{
-		  //	  LOG ("ice", errs() << "Nonlinear Horn Constraints are not supported right now.\n");
-		  //	  exit (-3);
-		  //}
-
-		  // This is important as ICE is not able to handle it.
-		  //if(bind::fname(r.head()) != bind::fname(body_app)) {
-		  //  continue;
-		  //}
 
 		  bool cleanBody = true;
 		  for (Expr body_app : body_pred_apps) {
@@ -1661,6 +1648,7 @@ namespace seahorn
 				  LOG ("ice", errs() << "Generate Initial Program State Samples.\n");
 				  do {
 					  bool run = true;
+					  cout<<"generate pos sam"<<endl;
 					  upd = generatePostiveSamples (db, r, solver, index, run);
 					  if (!run) return false;
 					  if (upd) {
@@ -2122,17 +2110,22 @@ namespace seahorn
 				  Expr body_forumla = extractRelation(r, db, NULL, NULL);
 
 				  LOG ("ice", errs() << "Verification condition: " << *r_head_cand << " <- " << *body_forumla << "\n");
+				  cout<<"Verification condition: " << *r_head_cand << " <- " << *body_forumla << endl;
 
 				  solver.assertExpr(body_forumla);
 
 				  //solver.toSmtLib(errs());
 				  boost::tribool result = solver.solve();
+				  cout<<"smt formulas "<<endl;
+				  solver.toSmtLib(cout);
+				  cout<<endl;
 				  if(result != UNSAT)
 				  {
 					  LOG("ice", errs() << "SAT, NEED TO ADD The Counterexample\n";);
 					  upd = true; isChanged = true;
 					  //get cex
 					  ZModel<EZ3> m = solver.getModel();
+					  cout<<"z3 model "<<m<<endl;
 					  //print cex
 					  std::set<DataPoint> negPoints;
 					  for (Expr body_app : body_pred_apps) {

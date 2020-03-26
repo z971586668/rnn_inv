@@ -1130,15 +1130,9 @@ namespace seahorn
   {
     //TODO check where does the program dump float x
     if (isa<UndefValue> (&I)){
-      outs()<<"undef "<<"value : "<<I<<" type : "<<*(I.getType())<<"\n";
       return Expr(0);
     } 
     // assert (!isa<UndefValue>(&I));
-    outs()<<"value : "<<I<<" type : "<<*(I.getType())<<"\n";
-
-    if (isa<Constant> (&I)) {
-      cout<<"is constant"<<endl;
-    }
 
     // -- basic blocks are mapped to Bool constants
     if (const BasicBlock *bb = dyn_cast<const BasicBlock> (&I))
@@ -1148,7 +1142,6 @@ namespace seahorn
     // -- constants are mapped to values
     if (const Constant *cv = dyn_cast<const Constant> (&I))
     {
-      cout<<"consts are mapped to values : "<<mkTerm<const Value*>(&I, m_efac)<<endl;
       if (const ConstantInt *c = dyn_cast<const ConstantInt> (&I))
       {
         if (c->getType ()->isIntegerTy (1))
@@ -1180,7 +1173,6 @@ namespace seahorn
      
     // -- everything else is mapped to a constant
     Expr v = mkTerm<const Value*> (&I, m_efac);
-    cout<<"everything else : "<<v<<"\n";
 
     
     const Value *scalar = nullptr;
@@ -1188,13 +1180,10 @@ namespace seahorn
     if (isShadowMem (I, &scalar))
     {
       if (scalar){
-        cout<<"create a int const"<<endl;
         // -- create a constant with the name v[scalar]
         return bind::intConst
           (op::array::select (v, mkTerm<const Value*> (scalar, m_efac)));
       }
-
-      cout<<"before mk const"<<endl;
 
       if (m_trackLvl >= MEM)
       {
@@ -1206,13 +1195,10 @@ namespace seahorn
     
       
     if (isTracked (I)){
-      cout<<"return is tracked "<<endl;
       return I.getType ()->isIntegerTy (1) ? 
         bind::boolConst (v) : bind::intConst (v);
     }
-     
-    
-    cout<<"return expr 0"<<endl;
+         
     return Expr(0);
   }
   
@@ -1322,10 +1308,7 @@ namespace seahorn
   void UfoLargeSymExec::execCpEdg (SymStore &s, const CpEdge &edge, 
                                    ExprVector &side)
   {
-    // cout<<"side size : "<<side.size()<<endl;
     const CutPoint &target = edge.target ();
-    // outs()<<"cut point target name "<<target.bb().getName()<<"\n";
-    // outs()<<"cut point source name "<<edge.source().bb().getName()<<"\n";
     
     std::unique_ptr<EZ3> zctx;
     std::unique_ptr<ZSolver<EZ3> > smt;
@@ -1347,19 +1330,16 @@ namespace seahorn
     bool first = true;
     for (const BasicBlock& bb : edge) 
     {
-      // outs()<<"bb in edge : "<<bb.getName()<<"\n";
       Expr bbV;
       if (first)
       {
         bbV = s.havoc (m_sem.symb (bb));
         m_sem.exec (s, bb, side, trueE); 
-        // cout<<"bbv first : "<<bbV<<endl; 
       }
       else
       {
         execEdgBb (s, edge, bb, side);
         bbV = s.read (m_sem.symb (bb));
-        // cout<<"bbv not first : "<<bbV<<endl;
       }
 
       
@@ -1476,20 +1456,11 @@ namespace seahorn
     llvm::SmallVector<const BasicBlock*, 4> preds;
     for (const BasicBlock* p : seahorn::preds (bb)) 
       if (reachable (p)) preds.push_back (p);
-
-    // outs()<<"preds for bb : "<<bb.getName();
-    // for(auto p : preds){
-    //   outs()<<p->getName()<<"\n";
-    // }
     
     // -- compute source of all the edges
     for (const BasicBlock *pred : preds)
       edges.push_back (s.read (m_sem.symb (*pred)));
 
-    // outs()<<"sources for bb : "<<bb.getName();
-    // for(auto e : edges){
-      // cout<<e<<endl;
-    // }
       
     assert (preds.size () == edges.size ());
     // -- update constant representing current bb
@@ -1535,9 +1506,6 @@ namespace seahorn
       
     // unique node with no successors is asserted to always be reachable
     if (last) side.push_back (bbV);
-
-    // cout<<"insert side : "<<side[side.size() - 1]<<endl;
-
       
     /// -- generate constraints from the phi-nodes (keep them separate for now)
     std::vector<ExprVector> phiConstraints (preds.size ());
