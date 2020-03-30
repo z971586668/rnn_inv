@@ -1408,6 +1408,7 @@ namespace seahorn
 	  exit (-3);
   }
 
+//NOTES Repeatly call this function until a new pos cex is generated
   bool ICE::generatePostiveSamples (HornClauseDB &db, HornRule r, ZSolver<EZ3> solver, int& index, bool& run) {
 	  Expr body_app = r.head();
 	  if (bind::domainSz(bind::fname(body_app)) <= 0) {
@@ -1418,6 +1419,7 @@ namespace seahorn
 	  Expr r_head_cand = m_candidate_model.getDef(r.head());
 
 	  LOG("ice", errs() << "TRYING TO ADD some CounterExample.\n";);
+	  cout<<"trying to add some counterexamples"<<endl;
 
 	  solver.reset();
 
@@ -1426,25 +1428,33 @@ namespace seahorn
 	  Expr body_forumla = extractRelation(r, db, NULL, NULL);
 
 	  LOG ("ice", errs() << "Verification condition: " << *r_head_cand << " <- " << *body_forumla << "\n");
+	  cout<< "Verification condition: " << *r_head_cand << " <- " << *body_forumla << endl;
 	  solver.assertExpr(body_forumla);
 
-	  //solver.toSmtLib(errs());
+    cout<<"smt formula";
+	  solver.toSmtLib(cout);
+    cout<<endl;
 	  boost::tribool result = solver.solve();
 	  if(result != UNSAT)
 	  {
 		  LOG("ice", errs() << "SAT, NEED TO ADD More Examples\n";);
+		  cout<<"SAT, NEED TO ADD More Examples"<<endl;
 		  //get cex
 		  ZModel<EZ3> m = solver.getModel();
 		  //print cex
 		  LOG("ice", errs() << "(";);
+		  cout<< "(";
 		  LOG("ice", errs() << ") -> (";);
+		  cout<< ") -> (";
 		  for(int i=0; i<bind::domainSz(bind::fname(body_app)); i++)
 		  {
 			  Expr arg_i = body_app->arg(i+1);
 			  Expr arg_i_value = m.eval(arg_i);
 			  LOG("ice", errs() << *arg_i_value << ",";);
+			  cout<<*arg_i_value << ",";
 		  }
 		  LOG("ice", errs() << ")\n";);
+		  cout<<")"<<endl;
 
 		  //add counterexample
 		  std::list<Expr> attr_values;
@@ -1457,12 +1467,14 @@ namespace seahorn
 			  if(bind::isBoolConst(arg_i_value))
 			  {
 				  LOG("ice", errs() << "UNCERTAIN VALUE: " << *arg_i_value << "\n";);
+				  cout<< "UNCERTAIN VALUE: " << *arg_i_value << endl;
 				  Expr uncertain_value = mk<FALSE>(arg_i_value->efac());
 				  arg_i_value = uncertain_value;
 			  }
 			  else if(bind::isIntConst(arg_i_value))
 			  {
 				  LOG("ice", errs() << "UNCERTAIN VALUE: " << *arg_i_value << "\n";);
+				  cout<< "UNCERTAIN VALUE: " << *arg_i_value << endl;
 				  Expr uncertain_value = mkTerm<mpz_class>(0, arg_i_value->efac());
 				  arg_i_value = uncertain_value;
 			  }
@@ -1483,6 +1495,7 @@ namespace seahorn
 			  if(oss.str().find("-0x") == 0)
 			  {
 				  LOG("ice", errs() << "TOO LARGE VALUE, OVERFLOW: " << *arg_i_value << "\n";);
+				  cout<< "TOO LARGE VALUE, OVERFLOW: " << *arg_i_value << endl;
 				  Expr uncertain_value = mkTerm<mpz_class>(0, arg_i_value->efac());
 				  arg_i_value = uncertain_value;
 			  }
@@ -1497,6 +1510,7 @@ namespace seahorn
 		  {
 			  if (SVMExecPath.compare("") != 0 && m_neg_data_set.size() > /*50*/ICESVMFreqPos) {
 				  LOG("ice", errs() << "SVM based Hyperlane Learning!\n");
+				  cout<<"SVM based Hyperlane Learning!"<<endl;
 				  svmLearn (NULL);
 			  }
 			  if (!ICEICE) {
@@ -1522,6 +1536,7 @@ namespace seahorn
 			  m_cex_list.push_back(pos_dp);
 			  addDataPointToIndex(pos_dp, index);
 			  LOG("ice", errs() << "POS CEX, INDEX IS " << index << "\n";);
+			  cout<< "POS CEX, INDEX IS " << index << endl;
 			  index++;
 
 			  run = sampleLinearHornCtrs(body_app, pos_dp, index);
@@ -1529,6 +1544,7 @@ namespace seahorn
 		  else //it is a duplicate data point
 		  {
 			  LOG("ice", errs() << "Duplicated positive points should be impossible.\n");
+			  cout<< "Duplicated positive points should be impossible."<<endl;
 			  clearNegSamples (body_app, true);
 			  //exit (-3);
 		  }
@@ -1625,17 +1641,21 @@ namespace seahorn
 		  }
 
 		  if (body_pred_apps.size() <= 0 || cleanBody) {
+			  cout<<"clean body"<<endl;
 				  // bind::domainSz(bind::fname(body_pred_apps[0])) <= 0) {
 			  if (bind::domainSz(bind::fname(r.head ())) <= 0) {
 				  LOG ("ice", errs() << "Verify a rule without unknown invariants.\n");
+				  cout<<"Verify a rule without unknown invariants"<<endl;
 				  Expr r_head_cand = m_candidate_model.getDef(r.head());
 				  solver.reset();
 				  solver.assertExpr(mk<NEG>(r_head_cand));
 				  Expr body_forumla = extractRelation(r, db, NULL, NULL);
 				  LOG ("ice", errs() << "Verification condition: " << *r_head_cand << " <- " << *body_forumla << "\n");
+				  cout<< "Verification condition: " << *r_head_cand << " <- " << *body_forumla << endl;
 				  solver.assertExpr(body_forumla);
 				  boost::tribool result = solver.solve();
 				  if(result != UNSAT) {
+					  cout<<"program is buggy"<<endl;
 					  outs()<<"Program is buggy.\n";
 					  std::list<Expr> attr_values;
 					  DataPoint pos_dp(bind::fname(bind::fname(r.head())), attr_values);
@@ -1646,9 +1666,10 @@ namespace seahorn
 			  } else {
 				  // Head is possibly need to be refined!
 				  LOG ("ice", errs() << "Generate Initial Program State Samples.\n");
+				  cout<<"Generate Initial Program State Samples"<<endl;
 				  do {
 					  bool run = true;
-					  cout<<"generate pos sam"<<endl;
+					  cout<<"generate positive samples "<<endl;
 					  upd = generatePostiveSamples (db, r, solver, index, run);
 					  if (!run) return false;
 					  if (upd) {
@@ -2084,6 +2105,7 @@ namespace seahorn
 				  counter ++;
 
 				  LOG("ice", errs() << "Rule Verification Round " << counter << "\n");
+				  cout << "Rule Verification Round " << counter << endl;
 
 				  // Which predicates will be changed in this iteration of solving.
 				  ExprVector changedPreds;
@@ -2102,6 +2124,7 @@ namespace seahorn
 				  Expr r_head_cand = m_candidate_model.getDef(r_head);
 
 				  LOG("ice", errs() << "TRYING TO ADD some CounterExample.\n";);
+				  cout << "TRYING TO ADD some CounterExample." << endl;
 
 				  solver.reset();
 
@@ -2122,6 +2145,7 @@ namespace seahorn
 				  if(result != UNSAT)
 				  {
 					  LOG("ice", errs() << "SAT, NEED TO ADD The Counterexample\n";);
+            cout<< "SAT, NEED TO ADD The Counterexample"<<endl;
 					  upd = true; isChanged = true;
 					  //get cex
 					  ZModel<EZ3> m = solver.getModel();
@@ -2134,20 +2158,25 @@ namespace seahorn
 							  continue;
 
 						  LOG("ice", errs() << "(";);
+              cout << "(";
 						  for(int i=0; i<bind::domainSz(bind::fname(body_app)); i++)
 						  {
 							  Expr arg_i = body_app->arg(i+1);
 							  Expr arg_i_value = m.eval(arg_i);
 							  LOG("ice", errs() << *arg_i_value << ",";);
+                cout<< *arg_i_value << ",";
 						  }
 						  LOG("ice", errs() << ") -> (";);
+              cout<< ") -> (";
 						  for(int i=0; i<bind::domainSz(bind::fname(r_head)); i++)
 						  {
 							  Expr arg_i = r_head->arg(i+1);
 							  Expr arg_i_value = m.eval(arg_i);
 							  LOG("ice", errs() << *arg_i_value << ",";);
+                cout<< *arg_i_value << ",";
 						  }
 						  LOG("ice", errs() << ")\n";);
+              cout<< ")"<<endl;
 
 						  // Presumbaly add counterexample
 						  std::list<Expr> attr_values;
@@ -2160,12 +2189,14 @@ namespace seahorn
 							  if(bind::isBoolConst(arg_i_value))
 							  {
 								  LOG("ice", errs() << "UNCERTAIN VALUE: " << *arg_i_value << "\n";);
+                  cout << "UNCERTAIN VALUE: " << *arg_i_value <<endl;
 								  Expr uncertain_value = mk<FALSE>(arg_i_value->efac());
 								  arg_i_value = uncertain_value;
 							  }
 							  else if(bind::isIntConst(arg_i_value))
 							  {
 								  LOG("ice", errs() << "UNCERTAIN VALUE: " << *arg_i_value << "\n";);
+                  cout << "UNCERTAIN VALUE: " << *arg_i_value <<endl;
 								  Expr uncertain_value = mkTerm<mpz_class>(0, arg_i_value->efac());
 								  arg_i_value = uncertain_value;
 							  }
@@ -2186,6 +2217,7 @@ namespace seahorn
 							  if(oss.str().find("-0x") == 0)
 							  {
 								  LOG("ice", errs() << "TOO LARGE VALUE, OVERFLOW: " << *arg_i_value << "\n";);
+                  cout << "TOO LARGE VALUE, OVERFLOW: " << *arg_i_value << endl;
 								  Expr uncertain_value = mkTerm<mpz_class>(0, arg_i_value->efac());
 								  arg_i_value = uncertain_value;
 							  }
@@ -2214,6 +2246,7 @@ namespace seahorn
 					  //auto searched = m_pos_data_set.find(neg_dp);
 					  //if (searched != m_pos_data_set.end()) {
 					  if (foundPos) {
+              cout <<"find pos cex"<<endl;
 						  if (bind::domainSz(bind::fname(r_head)) <= 0) {
 							  outs()<<"Program is buggy.\n";
 							  std::list<Expr> attr_values;
@@ -2279,6 +2312,7 @@ namespace seahorn
 						  if(m_pos_data_set.size() == orig_size + 1) { //no duplicate
 							  if (SVMExecPath.compare("") != 0 && m_neg_data_set.size() > /*50*/ICESVMFreqPos) {
 								  LOG("ice", errs() << "SVM based Hyperlane Learning!\n");
+                  cout << "SVM based Hyperlane Learning!"<<endl;
 								  svmLearn (NULL);
 							  }
 							  if (!ICEICE) {
@@ -2334,6 +2368,7 @@ namespace seahorn
 							  postree.insert(std::make_pair (m_pos_list.size()-1, preIndices));
 
 							  LOG("ice", errs() << "POS CEX, INDEX IS " << index << "\n";);
+                cout << "POS CEX, INDEX IS " << index << endl;
 							  index++;
 							  posUpd = true;
 
@@ -2358,6 +2393,7 @@ namespace seahorn
 							  if (bind::domainSz(bind::fname(r_head)) <= 0) surebad = true;
 						  }
 
+              cout<<"ICE ICE "<<ICEICE<<endl;
 						  if (ICEICE && !surebad && negPoints.size() == 1) {
 							  // Add Implication samples.
 							  std::list<Expr> attr_values;
@@ -2441,6 +2477,7 @@ namespace seahorn
 									  m_cex_list.push_back(neg_dp);
 									  addDataPointToIndex(neg_dp, index);
 									  LOG("ice", errs() << "NEG CEX, INDEX IS " << index << "\n";);
+                    cout << "NEG CEX, INDEX IS " << index << endl;
 									  index++;
 
 									  if (changedPreds.size() <= 1 ||
@@ -2453,6 +2490,7 @@ namespace seahorn
 										  std::map<Expr, int>::iterator it = m_neg_data_count.find(neg_dp.getPredName());
 										  if (it != m_neg_data_count.end() && it->second > ICESVMFreqNeg && it->second % ICESVMFreqNeg == 0) {
 											  LOG("ice", errs() << "SVM based Hyperplane Learning!\n");
+                        cout << "SVM based Hyperplane Learning!" <<endl;
 											  svmLearn (neg_dp.getPredName());
 										  }
 									  }
@@ -2472,6 +2510,7 @@ namespace seahorn
 					  // Ask machine learning for a new invariant for body_app.
 					  // Expr pre = m_candidate_model.getDef(body_app);
 					  //if (SVMExecPath.compare("") == 0)
+              cout<<"C5 learn "<<endl;
 						  C5learn (changedPreds);
 					  //else
 					  //	  svmLearn (changedPreds);
